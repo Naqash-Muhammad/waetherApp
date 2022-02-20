@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./font/fontawesome-free-5.15.2-web/css/all.css">
+
+    <style>
+        #waether{
+            font-size:  4rem;
+            padding-top: 5rem;
+            animation: rotate 3s linear infinite alternate;
+        }
+        @keyframes rotate{
+            from{
+                transform: translateX(-90deg);
+            }to{
+                transform: translateX(90deg);
+            }
+        }
+        #Location{
+            padding-top: 6rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 bg-warning p-5">
+                <i class="fas fa-sun d-flex justify-content-center" id="waether"></i>
+
+
+                <h3 id="Location"><i class="fas fa-street-view text-capitalize  pt-3 d-flex justify-content-center">muridke in</i></h3>
+                <P class="d-flex justify-content-center" id="data">wed \ Oct,23 |10:12AM</P>
+
+                <h3 class="d-flex justify-content-center" id="Temp">26.49C</h3>
+                <P class="d-flex justify-content-center pb-5">Max26.49C | Min26.49C</P>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+
+    <script>
+        const currData = document.getElementById("data");
+        const weatherCon = document.getElementById("waether");
+
+        const tempStatus = "cloud";
+
+         const getCurrentDate = () =>{
+            var weeked = new Array(7);
+                weeked[0] = "sunday";
+                weeked[1] = "monday";
+                weeked[2] = "tusday";
+                weeked[3] = "wensday";
+                weeked[4] = "tharsday";
+                weeked[5] = "friday";
+                weeked[6] = "sathurday";
+
+                var currnetDay = new Date();
+            let day = (weeked[currnetDay.getDay()]);
+            return day;
+         }
+
+         const getCurrentTime = () =>{
+
+            var currentTime = new Date();
+
+            const months = [
+                 "jan",
+                 "Feb",
+                 "mar",
+                 "apr",
+                 "may",
+                 "june",
+                 "july",
+                 "agust",
+                 "sept",
+                 "oct",
+                 "nov",
+                 "dec",
+             ]
+
+             var month = months[currentTime.getMonth()];
+             var date = currentTime.getDate();
+             var year = currentTime.getFullYear();
+             console.log(month + "/" + date + "/" + year);
+
+             var hours = currentTime.getHours();
+             var mints = currentTime.getMinutes();
+             let time = (hours + ":" + mints);
+
+            return ` ${month} / ${date} / ${year} | ${hours}:${mints}`;
+            
+         }
+         currData.innerHTML= getCurrentDate() + getCurrentTime();
+    </script>
+</body>
+</html>
